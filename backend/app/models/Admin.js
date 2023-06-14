@@ -32,9 +32,7 @@ Admin.pre("save", function (next) {
     this.password = hashedPassword;
     next();
   }
-  if (this.isNew) {
-    
-  }
+  console.log('this.isNew is : ',this.isNew);
   throw new ApiError(400,'New password must be different with old Password')
 });
 

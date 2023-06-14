@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcryptjs from "bcryptjs"
+import ApiError from "../../utils/ApiError.js";
 
 const schema = mongoose.Schema;
 
@@ -20,13 +22,23 @@ const UserSchema = new schema({
     type: String,
     required: [true, "email is required"],
   },
-  role:{
+  role: {
     type: String,
-    enum: ['admin', 'student'],
-    require: [true, "This field is required"]
-  }
+    enum: ["admin", "student"],
+    require: [true, "This field is required"],
+  },
 });
 
-UserSchema.pre('save',function(next) {
-    
-})
+UserSchema.pre("save", function (next) {
+  if (this.isModified("password")) {
+    // console.log('password modified');
+    const salt = bcryptjs.genSaltSync();
+    const hashedPassword = bcryptjs.hashSync(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  }
+  // console.log('this.isNew is : ',this.isNew);
+  throw new ApiError(400,'New password must be different with old Password')
+});
+
+export default mongoose.model("user", UserSchema);

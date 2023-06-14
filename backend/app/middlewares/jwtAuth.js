@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken'
 
 import Admin from '../models/Admin.js';
 import ApiError from '../../utils/ApiError.js';
-
+/**
+ * this middleware is used to check authentication for private activities
+ */
 const jwtAuth = (req, res, next) => {
   const headerToken = req.headers.authorization;
   if (!headerToken) {
