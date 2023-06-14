@@ -4,9 +4,10 @@ const COURSE_PATH='/course'
 export const PATH = {
     index: '/',
     admin: {
-        createAdmin: ADMIN_PATH + '/create-admin',
-        createStudent: ADMIN_PATH + '/create-student',
-        deleteStudent: ADMIN_PATH + '/delete-student'
+        register: ADMIN_PATH + '/register',
+        deleteUser: ADMIN_PATH + '/delete',
+        updatePassword: ADMIN_PATH + 'update-password',
+        updateEmail: ADMIN_PATH + 'update-email',
     },
     course: {
         getAllCourse: COURSE_PATH + '/',

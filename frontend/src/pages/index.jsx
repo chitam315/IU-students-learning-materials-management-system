@@ -20,12 +20,10 @@ function index() {
   const rules = {
     username: [required(), minMax(6)],
     password: [required(), minMax(6)],
-    role: [required()]
   };
 
   const form = useForm(rules);
   const onLogin = (ev) => {
-    console.log("click");
     ev.preventDefault();
     if (form.validate()) {
       console.log("validate successfully");

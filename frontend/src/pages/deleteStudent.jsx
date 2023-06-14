@@ -8,11 +8,9 @@ import { PATH } from "../config/PATH";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { message } from "antd";
-import { useAuth } from "../components/AuthContext";
 
 function DeleteStudent() {
   const navigate = useNavigate()
-  const {user} = useAuth()
 
   let rules = {
     username: [required(), minMax(6, 11, "Username has from 6 to 11 characters")],
@@ -27,7 +25,7 @@ function DeleteStudent() {
     ev.preventDefault()
     if (form.validate()) {
         try {
-            await deleteService({username: form.values.username, role: user.role})
+            await deleteService({username: form.values.username})
                 // setIsCreateSuccess(true)
                 message.success('Delete student successfully')
                 navigate(PATH.index)

@@ -3,10 +3,12 @@ import MainLayout from "../layouts/MainLayout";
 import Index from "../pages";
 import AuthRouter from '../components/AuthRouter'
 import { PATH } from "../config/PATH";
-import CreateStudent from '../pages/createStudent'
-import CreateAdmin from '../pages/createAdmin'
+// import CreateStudent from '../pages/createStudent'
+import Register from '../pages/register'
+import UpdatePassword from '../pages/updatePassword'
 import DeleteStudent from '../pages/deleteStudent'
 import Page404 from '../pages/404'
+import UpdateEmail from "../pages/updateEmail";
 
 export const routes = [
     {
@@ -20,17 +22,21 @@ export const routes = [
                 element: <AuthRouter redirect={PATH.index} />,
                 children: [
                     {
-                        element: <CreateStudent/>,
-                        path: PATH.admin.createStudent
+                        element: <Register/>,
+                        path: PATH.admin.register
                     },
                     {
                         element: <DeleteStudent/>,
-                        path: PATH.admin.deleteStudent
+                        path: PATH.admin.deleteUser
                     },
                     {
-                        element: <CreateAdmin/>,
-                        path: PATH.admin.createAdmin
+                        element: <UpdatePassword/>,
+                        path: PATH.admin.updatePassword
                     },
+                    {
+                        element: <UpdateEmail/>,
+                        path: PATH.admin.updateEmail
+                    }
                 ]
             },
             {

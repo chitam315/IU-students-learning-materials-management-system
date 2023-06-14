@@ -16,7 +16,7 @@ export const studentService = {
      * }
      */
     delete(data){
-        return api.delete(`${ADMIN_API}/delete-user/${data.username}`,{data: {role: data.role}})
+        return api.delete(`${ADMIN_API}/delete-user/${data.username}`)
     },
 
     update(data){

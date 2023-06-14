@@ -2,6 +2,7 @@ import { message } from 'antd'
 import { createContext, useContext, useEffect, useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
 // import { PATH } from '../../config/PATH'
+import jwt_decode from "jwt-decode";
 import { authService } from '../../services/auth.service'
 import { clearToken, clearUser, getUser, setToken, setUser } from '../../utils/token'
 
@@ -26,10 +27,9 @@ const AuthProvider = ({ children }) => {
             const res = await authService.login(data)
             if (res.token) {
                 setToken(res.token)
-                
-                _setUser({username: res.username, role: data.role})
+                const decoded = jwt_decode(res.token)
+                _setUser({username: decoded.username, role: decoded.role})
                 message.success('Log in successfully')
-                // getProfile()
             }
         } catch (error) {
             console.log(error)

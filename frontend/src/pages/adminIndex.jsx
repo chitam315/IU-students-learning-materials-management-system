@@ -20,9 +20,10 @@ export const AdminIndex = ({user}) => {
         <div className="flex-box">
             <div className="title">Hello {user.username}. Welcome to IU.</div>
             <div className="flex-box-mini">
-                <Link to={PATH.admin.createStudent}>CREATE STUDENT</Link>
-                <Link to={PATH.admin.deleteStudent}>DELETE USER</Link>
-                <Link to={PATH.admin.createAdmin}>CREATE ADMIN</Link>
+                <Link to={PATH.admin.register}>REGISTER</Link>
+                <Link to={PATH.admin.deleteUser}>DELETE USER</Link>
+                <Link to={PATH.admin.updatePassword}>CHANGE PASSWORD</Link>
+                <Link to={PATH.admin.updateEmail}>CHANGE EMAIL</Link>
             </div>
         </div>
     </div>

@@ -8,8 +8,9 @@ import { PATH } from "../config/PATH";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { message } from "antd";
+import { authService } from "../services/auth.service";
 
-function CreateAdmin() {
+function UpdateEmail() {
   const [isCreateSuccess, setIsCreateSuccess] = useState(false);
   const navigate = useNavigate();
 
@@ -18,12 +19,13 @@ function CreateAdmin() {
       required(),
       minMax(6, 10, "username should have 6 to 10 characters"),
     ],
-    password: [required(), minMax(6, 21)],
-    rePassword: [required(), reEnter("password", "Incorrect password")],
-    email: [required(), regexp("email")],
+    oldEmail: [required(), regexp("email")],
+    newEmail: [required(), regexp('email')],
+    newemailagain: [required(), reEnter('newemail')]
+
   };
 
-  const { loading, execute: signUpService } = useAsync(adminService.create);
+  const { loading, execute: signUpService } = useAsync(authService.updateEmail);
 
   const form = useForm(rules);
 
@@ -51,19 +53,20 @@ function CreateAdmin() {
       <div className="wrap">
         {/* login-form */}
         <div className="ct_login">
-          <h2 className="title">CREATE ADMIN</h2>
+          <h2 className="title">UPDATE EMAIL</h2>
           <Input placeholder="USERNAME" {...form.register("username")}></Input>
           <Input
-            type="password"
-            placeholder="PASSWORD"
-            {...form.register("password")}
+            placeholder="OLD EMAIL"
+            {...form.register("oldEmail")}
           ></Input>
           <Input
-            type="password"
-            placeholder="ENTER PASSWORD AGAIN"
-            {...form.register("rePassword")}
+            placeholder="NEW EMAIL"
+            {...form.register("newEmail")}
           ></Input>
-          <Input placeholder="EMAIL" {...form.register("email")}></Input>
+          <Input
+            placeholder="ENTER NEW EMAIL AGAIN"
+            {...form.register("newemailagain")}
+          ></Input>
           <Button onClick={onSubmit} Loading={loading}>
             CREATE
           </Button>
@@ -73,4 +76,4 @@ function CreateAdmin() {
   );
 }
 
-export default CreateAdmin;
+export default UpdateEmail;

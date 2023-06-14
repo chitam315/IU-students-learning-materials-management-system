@@ -17,7 +17,7 @@ export const Login = ({form,onLogin,loading}) => {
             placeholder="PASSWORD"
             {...form.register("password")}
           ></Input>
-          <Field
+          {/* <Field
             label="Your role:"
             {...form.register("role")}
             renderInput={(error, props) => (
@@ -34,7 +34,7 @@ export const Login = ({form,onLogin,loading}) => {
                 ]}
               />
             )}
-          />
+          /> */}
           <Button onClick={onLogin} Loading={loading}>
             Login
           </Button>
