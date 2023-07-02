@@ -9,8 +9,8 @@ const Course = new schema({
     minlength: [6, "Name of course is too short"],
     maxlength: [100, "Name of course is too long"],
   },
-  books: {
-    type: [String],
+  filename: {
+    type: String,
   },
 });
 

@@ -2,8 +2,6 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import { catchAsync } from "../middlewares/async.js";
-import Admin from "../models/Admin.js";
-import Student from "../models/Student.js";
 import ApiError from "../../utils/ApiError.js";
 import { SERECT_KEY } from "../../config/index.js";
 import User from "../models/User.js";
@@ -13,6 +11,7 @@ class AuthController {
   userLogin = catchAsync(async (req, res) => {
     var { username, password } = req.body;
     username = username.toUpperCase();
+    console.log(username);
     const existedUser = await User.findOne({ username });
     if (!existedUser) {
       throw new ApiError(400, "username is not valid");
@@ -49,23 +48,25 @@ class AuthController {
   // [PATCH] /update-password
   updatePassword = catchAsync(async (req, res, next) => {
     const { username, oldPassword, newPassword } = req.body;
-    const admin = await Admin.findOne({ username: username.toUpperCase() });
-    const isMatch = bcyptjs.compareSync(oldPassword, admin.password);
+    const user = await User.findOne({ username: username.toUpperCase() });
+    const isMatch = bcryptjs.compareSync(oldPassword, user.password);
     if (!isMatch) {
       throw new ApiError(400, "Old password is not correct");
     } else {
-      admin.password = newPassword;
-      await admin.save();
+      user.password = newPassword;
+      await user.save();
       res.status(200).json({ success: true });
     }
   });
 
   // [PATCH] /update-email
-  updateEmail = catchAsync(async (req, res, next) => {
-    const { username, oldEmail, newEmail } = req.body;
-    const admin = await Admin.findOneAndUpdate({ username,oldEmail }, { newEmail });
-    res.status(200).json({ success: true });
-  });
+  // updateEmail = catchAsync(async (req, res, next) => {
+  //   const { username, oldEmail, newEmail } = req.body;
+  //   const user = await User.findOne({ username: username.toUpperCase() })
+  //   user.email = newEmail
+  //   await user.save()
+  //   res.status(200).json({ success: true });
+  // });
 }
 
 export default new AuthController();

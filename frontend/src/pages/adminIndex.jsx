@@ -24,6 +24,8 @@ export const AdminIndex = ({user}) => {
                 <Link to={PATH.admin.deleteUser}>DELETE USER</Link>
                 <Link to={PATH.admin.updatePassword}>CHANGE PASSWORD</Link>
                 <Link to={PATH.admin.updateEmail}>CHANGE EMAIL</Link>
+                <Link to={PATH.course.getAllCourse}>ACCESS DOCUMENT</Link>
+                <Link to={PATH.course.createCourse}>CREATE COURSE</Link>
             </div>
         </div>
     </div>

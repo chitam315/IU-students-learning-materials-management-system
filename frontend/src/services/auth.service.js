@@ -36,6 +36,14 @@ export const authService = {
       newPassword: data.newPassword
     }
     return api.patch(`${AUTHENTICATION_API}/update-password`,user)
+  },
+  updateEmail(data){
+    const user={
+      username: data.username,
+      oldEmail: data.oldEmail,
+      newEmail: data.newEmail
+    }
+    return api.patch(`${AUTHENTICATION_API}/update-email`,user)
   }
   // refreshToken(data){
   //     return api.post(`${AUTHENTICATION_API}/refresh-token`,data)

@@ -10,8 +10,9 @@ export const PATH = {
         updateEmail: ADMIN_PATH + 'update-email',
     },
     course: {
+        getCourseWithID: COURSE_PATH + '/:filename',
+        createCourse: COURSE_PATH + '/create',
         getAllCourse: COURSE_PATH + '/',
-        getCourseWithID: COURSE_PATH + '/:id'
     },
     Page404: '/*'
 }

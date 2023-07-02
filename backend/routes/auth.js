@@ -15,7 +15,7 @@ import authController from '../app/controllers/authController.js'
 router.post("/login",authController.userLogin)
 router.post("/register",authController.userRegister)
 router.patch("/update-password", jwtAuth, authController.updatePassword);
-router.patch("/update-email", jwtAuth, authController.updateEmail);
+// router.patch("/update-email", jwtAuth, authController.updateEmail);
 
 // module.exports = router;
 export default router;

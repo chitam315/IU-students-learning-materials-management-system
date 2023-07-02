@@ -1,5 +1,4 @@
 import { catchAsync } from "../middlewares/async.js";
-import course from "../models/Admin.js";
 import Course from "../models/Course.js";
 // import Student from "../models/Student.js";
 
@@ -16,13 +15,14 @@ class courseController {
       res.status(200).json({success: true, data: courses.map(course => ({
         _id: course._id,
         title: course.title,
+        filename: course.filename
     }))})
     })
 
   // [POST] /course/create-course
   createCourse = catchAsync(async (req, res, next) => {
-    var { title,books } = req.body;
-    const course = new Course({ title,books });
+    var { title,books, filename } = req.body;
+    const course = new Course({ title,books, filename });
     await course.save().then(() => res.status(201).json({ success: true }));
   });
 

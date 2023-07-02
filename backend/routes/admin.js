@@ -1,9 +1,7 @@
 import express from "express";
 const router = express.Router();
-import Student from "../app/models/Student.js";
-import Admin from "../app/models/Admin.js";
-import ApiError from "../utils/ApiError.js";
-import { catchAsync } from "../app/middlewares/async.js";
+// import ApiError from "../utils/ApiError.js";
+// import { catchAsync } from "../app/middlewares/async.js";
 
 import adminController from "../app/controllers/adminController.js";
 import jwtAuth from "../app/middlewares/jwtAuth.js";

@@ -10,7 +10,6 @@ const api = axios.create()
 api.interceptors.response.use((res) => {
     return res.data
 }, async (err) => {
-    console.log(err);
     if (err.response.status === 403 & err.response.data.error_code === "TOKEN_EXPIRED") {
         try {
             const res = await authService.refreshToken({

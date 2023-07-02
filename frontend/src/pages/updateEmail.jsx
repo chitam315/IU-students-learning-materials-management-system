@@ -21,7 +21,7 @@ function UpdateEmail() {
     ],
     oldEmail: [required(), regexp("email")],
     newEmail: [required(), regexp('email')],
-    newemailagain: [required(), reEnter('newemail')]
+    // newemailagain: [required(), reEnter('newemail')]
 
   };
 
@@ -63,12 +63,12 @@ function UpdateEmail() {
             placeholder="NEW EMAIL"
             {...form.register("newEmail")}
           ></Input>
-          <Input
+          {/* <Input
             placeholder="ENTER NEW EMAIL AGAIN"
             {...form.register("newemailagain")}
-          ></Input>
+          ></Input> */}
           <Button onClick={onSubmit} Loading={loading}>
-            CREATE
+            UPDATE
           </Button>
         </div>
       </div>

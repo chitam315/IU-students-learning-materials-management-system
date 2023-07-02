@@ -9,6 +9,8 @@ import UpdatePassword from '../pages/updatePassword'
 import DeleteStudent from '../pages/deleteStudent'
 import Page404 from '../pages/404'
 import UpdateEmail from "../pages/updateEmail";
+import CreateCourse from "../pages/createCourse";
+import {AccessDocument} from "../pages/accessDocument"
 
 export const routes = [
     {
@@ -38,6 +40,19 @@ export const routes = [
                         path: PATH.admin.updateEmail
                     }
                 ]
+            },
+            {
+                element: <AuthRouter redirect={PATH.index} />,
+                children: [
+                    {
+                        element: <CreateCourse/>,
+                        path: PATH.course.createCourse
+                    },
+                ]
+            },
+            {
+                element: <AccessDocument/>,
+                path: PATH.course.getAllCourse
             },
             {
                 element: <Page404 />,

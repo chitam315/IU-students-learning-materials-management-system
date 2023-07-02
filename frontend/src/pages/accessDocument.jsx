@@ -4,8 +4,12 @@ import { useFetch } from "../hooks/useFetch.js";
 import Skeleton from "../components/Skeleton";
 import { Link, generatePath } from "react-router-dom";
 import { PATH } from "../config/PATH";
+import { useAuth } from "../components/AuthContext";
 
-export const StudentIndex = ({ user }) => {
+
+export const AccessDocument = () => {
+  const { user } = useAuth();
+
   var { data, loading } = useFetch(() => {
     return courseService.getAllCourses();
   });
