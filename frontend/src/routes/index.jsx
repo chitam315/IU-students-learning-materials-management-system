@@ -10,49 +10,49 @@ import DeleteStudent from '../pages/deleteStudent'
 import Page404 from '../pages/404'
 import UpdateEmail from "../pages/updateEmail";
 import CreateCourse from "../pages/createCourse";
-import {AccessDocument} from "../pages/accessDocument"
+import { AccessDocument } from "../pages/accessDocument"
+import UploadFile from "../pages/uploadFile";
 
 export const routes = [
     {
         element: <MainLayout />,
         children: [
             {
-                element: <Index/>,
+                element: <Index />,
                 index: true
             },
             {
                 element: <AuthRouter redirect={PATH.index} />,
                 children: [
                     {
-                        element: <Register/>,
+                        element: <Register />,
                         path: PATH.admin.register
                     },
                     {
-                        element: <DeleteStudent/>,
+                        element: <DeleteStudent />,
                         path: PATH.admin.deleteUser
                     },
                     {
-                        element: <UpdatePassword/>,
+                        element: <UpdatePassword />,
                         path: PATH.admin.updatePassword
                     },
                     {
-                        element: <UpdateEmail/>,
+                        element: <UpdateEmail />,
                         path: PATH.admin.updateEmail
-                    }
-                ]
-            },
-            {
-                element: <AuthRouter redirect={PATH.index} />,
-                children: [
+                    },
                     {
-                        element: <CreateCourse/>,
+                        element: <CreateCourse />,
                         path: PATH.course.createCourse
+                    },
+                    {
+                        element: <AccessDocument />,
+                        path: PATH.course.getAllCourse
                     },
                 ]
             },
             {
-                element: <AccessDocument/>,
-                path: PATH.course.getAllCourse
+                element: <UploadFile/>,
+                path: PATH.course.uploadFile
             },
             {
                 element: <Page404 />,

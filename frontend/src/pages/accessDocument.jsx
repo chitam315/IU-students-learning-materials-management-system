@@ -31,7 +31,7 @@ export const AccessDocument = () => {
           <div className="title">Hello {user.username}. Welcome to IU.</div>
           <div className="flex-box-mini">
             {courses.map((course, i) => (
-              <a href={pathArray[i]} key={i}>
+              <a href={pathArray[i]} target="_blank" key={i}>
                 {course.title}
               </a>
             ))}

@@ -27,7 +27,7 @@ export const StudentIndex = ({ user }) => {
           <div className="title">Hello {user.username}. Welcome to IU.</div>
           <div className="flex-box-mini">
             {courses.map((course, i) => (
-              <a href={pathArray[i]} key={i}>
+              <a target="_blank" href={pathArray[i]} key={i}>
                 {course.title}
               </a>
             ))}

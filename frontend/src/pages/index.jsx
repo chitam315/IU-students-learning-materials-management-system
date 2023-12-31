@@ -26,7 +26,6 @@ function index() {
   const onLogin = (ev) => {
     ev.preventDefault();
     if (form.validate()) {
-      console.log("validate successfully");
       loginService(form.values);
     }
   };

@@ -25,9 +25,9 @@ const AuthProvider = ({ children }) => {
     const login = async (data) => {
         try {
             const res = await authService.login(data)
-            if (res.token) {
-                setToken(res.token)
-                const decoded = jwt_decode(res.token)
+            if (res.accessToken) {
+                setToken(res)
+                const decoded = await jwt_decode(res.accessToken)
                 _setUser({username: decoded.username, role: decoded.role})
                 message.success('Log in successfully')
             }

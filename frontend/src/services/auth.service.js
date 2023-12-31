@@ -1,3 +1,4 @@
+import axios from "axios";
 import { api, AUTHENTICATION_API } from "../config/api";
 
 export const authService = {
@@ -44,8 +45,12 @@ export const authService = {
       newEmail: data.newEmail
     }
     return api.patch(`${AUTHENTICATION_API}/update-email`,user)
+  },
+  getNewAccessToken(data){
+      return axios.post(`${AUTHENTICATION_API}/token`,{},{
+        headers: {
+          Authorization: `Bearer ${data.refreshToken}`
+        }
+      })
   }
-  // refreshToken(data){
-  //     return api.post(`${AUTHENTICATION_API}/refresh-token`,data)
-  // }
 };

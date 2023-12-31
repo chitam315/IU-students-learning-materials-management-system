@@ -13,6 +13,7 @@ export const PATH = {
         getCourseWithID: COURSE_PATH + '/:filename',
         createCourse: COURSE_PATH + '/create',
         getAllCourse: COURSE_PATH + '/',
+        uploadFile: COURSE_PATH + '/upload'
     },
     Page404: '/*'
 }

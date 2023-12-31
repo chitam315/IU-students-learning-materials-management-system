@@ -12,6 +12,8 @@
   "dependencies": {
     "antd": "^5.4.7",
     "autoprefixer": "^10.4.14",
+    "aws-amplify": "^6.0.9",
+    "aws-sdk": "^2.1527.0",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "dotenv": "^16.0.3",

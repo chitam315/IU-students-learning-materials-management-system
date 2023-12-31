@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { studentService } from "../services/student.service";
-import { required, minMax,reEnter, regexp } from "../utils/validate";
+import { required, minMax, reEnter, regexp } from "../utils/validate";
 import { useAsync } from "../hooks/useAsync";
 import { useForm } from "../hooks/useForm";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,18 @@ import { message } from "antd";
 import Field from "../components/Field";
 import { Select } from "../components/Select";
 import { authService } from "../services/auth.service";
+import { useAuth } from "../components/AuthContext";
 
 function CreateStudent() {
   // const [isCreateSuccess, setIsCreateSuccess] = useState(false);
   const navigate = useNavigate()
+  const { logout } = useAuth()
 
   let rules = {
     username: [required(), minMax(6)],
     password: [required(), minMax(6, 21)],
     rePassword: [required(), reEnter("password", "Incorrect password")],
-    email: [required(),regexp('email')],
+    email: [required(), regexp('email')],
     role: [required()]
   };
 
@@ -31,22 +33,24 @@ function CreateStudent() {
   const onSubmit = async (ev) => {
     ev.preventDefault()
     if (form.validate()) {
-        try {
-            await signUpService(form.values)
-                // setIsCreateSuccess(true)
-                message.success('Register successfully',6000)
-                navigate(PATH.index)
-        } catch (err) {
-            if (err.response?.data?.message) {
-                message.error(err.response.data.message)
-            }
-            // setIsCreateSuccess(false)
+      try {
+        await signUpService(form.values)
+        // setIsCreateSuccess(true)
+        message.success('Register successfully')
+        navigate(PATH.index)
+      } catch (err) {
+        if (err.response?.data?.message === "Access denied") {
+          logout()
+          message.error("Please log in again")
         }
-        finally {
-            // console.log(values);
-        }
+
+        // setIsCreateSuccess(false)
+      }
+      finally {
+        // console.log(values);
+      }
     }
-}
+  }
 
   return (
     <main className="auth" id="main">
