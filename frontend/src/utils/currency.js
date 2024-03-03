@@ -1,1 +1,0 @@
-export const currency = (number) => (new Intl.NumberFormat().format(number))

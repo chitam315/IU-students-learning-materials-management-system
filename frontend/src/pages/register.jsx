@@ -39,9 +39,17 @@ function CreateStudent() {
         message.success('Register successfully')
         navigate(PATH.index)
       } catch (err) {
+        console.log(err);
         if (err.response?.data?.message === "Access denied") {
           logout()
           message.error("Please log in again")
+          // navigate(PATH.index)
+        } else if(err.response?.data?.message === "Refresh token expired") {
+          logout()
+          message.error("Login session is expired")
+          // navigate(PATH.index)
+        } else {
+          message.error(err.response?.data?.message)
         }
 
         // setIsCreateSuccess(false)

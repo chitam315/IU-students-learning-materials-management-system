@@ -5,6 +5,8 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import jwt_decode from "jwt-decode";
 import { authService } from '../../services/auth.service'
 import { clearToken, clearUser, getUser, setToken, setUser } from '../../utils/token'
+import { useNavigate } from 'react-router-dom';
+import { PATH } from '../../config/PATH';
 
 const AuthContext = createContext({})
 
@@ -17,6 +19,7 @@ const useAuth = () => useContext(AuthContext)
 
 const AuthProvider = ({ children }) => {
     const [user, _setUser] = useState(getUser)
+    const navigate = useNavigate()
 
     useEffect(() => {
         setUser(user || null)
@@ -28,14 +31,11 @@ const AuthProvider = ({ children }) => {
             if (res.accessToken) {
                 setToken(res)
                 const decoded = await jwt_decode(res.accessToken)
-                _setUser({username: decoded.username, role: decoded.role})
+                _setUser({ username: decoded.username, role: decoded.role, fullName: decoded.fullName, email: decoded.email,id: decoded.id })
                 message.success('Log in successfully')
             }
         } catch (error) {
-            console.log(error)
-            if (error?.response?.data?.message) {
-                message.error(error.response.data.message)
-            }
+            // handleError(error)
         }
     }
 
@@ -43,6 +43,7 @@ const AuthProvider = ({ children }) => {
         clearToken()
         clearUser()
         _setUser(null)
+        navigate(PATH.index)
         message.success('Log out successfully')
     }
 

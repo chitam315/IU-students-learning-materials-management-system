@@ -6,6 +6,7 @@ import router from "./routes/index.js";
 import Mongo from "./config/db/index.js";
 import {PORT} from "./config/index.js"
 import {catchError} from './app/middlewares/error.js'
+import runServerChat from "./serverChat.js";
 
 const app = express();
 app.use(cors())
@@ -17,6 +18,8 @@ Mongo.connect()
 router(app);
 app.use(catchError)
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+runServerChat(server)

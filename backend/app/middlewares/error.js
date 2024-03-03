@@ -1,5 +1,6 @@
 const catchError = (err, req, res, next) => {
     console.log("Ê gặp lỗi kìa : ", JSON.stringify(err, null, 2));
+    console.log(err);
     // bắt lỗi ở mongoose
     if (err.name === "ValidationError") {
       const errors = err.errors;

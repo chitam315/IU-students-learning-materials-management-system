@@ -1,17 +1,12 @@
 import React from "react";
-import Input from "../components/Input";
-import Button from "../components/Button";
-import { Select } from "../components/Select";
-import Field from "../components/Field";
 import "./style.scss";
 import { useAuth } from "../components/AuthContext";
-import { PATH } from "../config/PATH";
+
 import { useAsync } from "../hooks/useAsync";
 import { useForm } from "../hooks/useForm";
 import { minMax, regexp, required } from "../utils/validate";
 import {Login} from "./login.jsx";
 import { AdminIndex } from "./adminIndex";
-import { StudentIndex } from "./studentIndex";
 
 
 function index() {
@@ -30,11 +25,9 @@ function index() {
     }
   };
 
-  if (user?.role == "admin") {
+  if (user) {
     return <AdminIndex user={user}/>;
-  } else if (user?.role == "student") {
-    return <StudentIndex user={user}/>
-  }
+  } 
 
   return (
     <Login form={form} onLogin={onLogin} loading={loading}/>

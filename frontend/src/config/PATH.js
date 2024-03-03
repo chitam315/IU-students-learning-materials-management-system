@@ -1,19 +1,34 @@
 const ADMIN_PATH='/admin'
 const COURSE_PATH='/course'
+const THESIS_PATH='/thesis'
+const FILE_PATH='/file'
+const CHAT_PATH = '/chat'
 
 export const PATH = {
     index: '/',
-    admin: {
-        register: ADMIN_PATH + '/register',
-        deleteUser: ADMIN_PATH + '/delete',
-        updatePassword: ADMIN_PATH + 'update-password',
-        updateEmail: ADMIN_PATH + 'update-email',
+    user: {
+        // register: ADMIN_PATH + '/register',
+        // deleteUser: ADMIN_PATH + '/delete',
+        changePassword:  '/change-password',
+        changeInformation:  '/change-information',
+        forgetPassword: '/forget-password',
+        updatePassCode: '/update-password-with-code'
     },
     course: {
-        getCourseWithID: COURSE_PATH + '/:filename',
-        createCourse: COURSE_PATH + '/create',
-        getAllCourse: COURSE_PATH + '/',
-        uploadFile: COURSE_PATH + '/upload'
+        getCourseWithID: COURSE_PATH + '/:id',
+        // createCourse: COURSE_PATH + '/create',
+        // getAllCourse: COURSE_PATH + '/',
+        // uploadFile: COURSE_PATH + '/upload',
+        getFileWithId: COURSE_PATH + '/file/:id'
     },
-    Page404: '/*'
+    file:{
+        getFileWithId: FILE_PATH + '/:id'
+    },
+    thesis: {
+        openThesisWithId: THESIS_PATH + '/:id'
+    },
+    chat: {
+        goToChat: CHAT_PATH
+    },
+    Page404: '/*',
 }

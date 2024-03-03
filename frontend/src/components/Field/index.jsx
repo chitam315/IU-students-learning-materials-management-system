@@ -21,7 +21,7 @@ const Field = forwardRef(({ label, error, require, renderInput, type = 'text', c
         }
     }, [])
     return (
-        <label style={{
+        <label id='labelInField' style={{
             position: "relative",
             ...customField,
         }}>
